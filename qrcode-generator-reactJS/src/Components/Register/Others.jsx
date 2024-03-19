@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import "./Register.css"; // You can add your custom styles here
 import url from '../../Config';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import "./Teacherform.css"
 function Others() {
+  const navigate=useNavigate();
+
+
   const [fullName, setFullName] = useState('');
   const [icNumber, setIcNumber] = useState('');
   const [Occupation, setOccupation] = useState('');
@@ -84,6 +87,8 @@ function Others() {
 
   const YOUR_OFFICE_LATITUDE =12.968154202937821;
   const YOUR_OFFICE_LONGITUDE =77.65520916404631;
+  // const YOUR_OFFICE_LATITUDE =12.9707624;
+  // const YOUR_OFFICE_LONGITUDE =80.0428828;
 
 
 
@@ -171,6 +176,7 @@ function Others() {
           // console.log(response.data);
           if (response.status === 201) {
             alert("Thank you for Registering!\nPlease note down your phoneNumber and password for getting Certificate");
+            navigate("/certificateLoging");
           } else {
             alert("Some Error Occurred");
           }
@@ -267,6 +273,9 @@ function Others() {
       </label>
       <button className="button" type="submit">Submit</button>
     </form>
+    <div>
+      <button onClick={()=>navigate("/certificateLoging")} className='button'>Get Certificate</button>
+    </div>
     <div className='footer'>
       <h4 className='text'>Registration of your personal data © [Copyrights_2024] ensures its security; we do not share any information with others.</h4>
     </div>

@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import "./Register.css"; // You can add your custom styles here
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import url from '../../Config';
 import "./Teacherform.css"
+
 function Teacher() {
   const [fullName, setFullName] = useState('');
   const [icNumber, setIcNumber] = useState('');
   const [schoolName, setSchoolName] = useState('');
   const [phonenumber, setContactNumber] = useState('');
-
+  
   const [state, setstate] = useState('');
   const [district, setDistrict] = useState('');
   const {eventname}=useParams();
   const schoolStates = ['SELANGOR', 'Kuala Lumpur'];
   const [password, setPassword] = useState('');
   const [Email, setEmail] = useState('');
+  const navigate=useNavigate();
 
   const selangorDistricts = [
     'Sabak Bernam',
@@ -172,6 +174,7 @@ function Teacher() {
       if(response.status==201)
       {
         alert("Thank you for Registering ! you may leave the site now")
+          navigate("/certificateLoging")
       }
       else{
         
@@ -263,6 +266,9 @@ function Teacher() {
 
       <button className="button" type="submit">Submit</button>
     </form>
+    <div>
+      <button onClick={()=>navigate("/certificateLoging")} className='button'>Get Certificate</button>
+    </div>
     <div className='footer'>
       <h4 className='text'>Registration of your personal data © [Copyrights_2024] ensures its security.we do not share any information with others.</h4>
     </div>

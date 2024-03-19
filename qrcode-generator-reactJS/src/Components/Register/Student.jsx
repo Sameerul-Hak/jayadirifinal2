@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import "./Register.css"
 import url from '../../Config';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import "./Teacherform.css"
 
 function Student() {
+  const navigate=useNavigate();
+
   const [fullName, setFullName] = useState('');
   const [icNumber, setIcNumber] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
@@ -247,6 +249,8 @@ function Student() {
       if(response.status==201)
       {
         alert("Thank you for Registering ! you may leave the site now")
+        navigate("/certificateLoging")
+
       }
       else{
         alert("Some Error Occured")
@@ -522,6 +526,9 @@ function Student() {
   
         <button type="submit" className="button">Submit</button>
       </form>
+      <div>
+      <button onClick={()=>navigate("/certificateLoging")} className='button'>Get Certificate</button>
+    </div>
       <div className='footer'>
           <h4 className='text'>Registration of your personal data © [Copyrights_2024] ensures its security; we do not share any information with others.</h4>
       </div>
